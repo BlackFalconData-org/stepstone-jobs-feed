@@ -1,0 +1,151 @@
+{
+    "title": "Jobs.ie Scraper input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "query": {
+            "title": "Search keyword",
+            "type": "string",
+            "description": "Job keyword to search on jobs.ie, e.g. 'software developer', 'nurse'. Not required when startUrls is provided.",
+            "editor": "textfield",
+            "example": "software developer"
+        },
+        "location": {
+            "title": "Location",
+            "type": "string",
+            "description": "Irish city or county, e.g. 'Dublin', 'Cork', 'Galway'.",
+            "editor": "textfield",
+            "default": "Dublin"
+        },
+        "radius": {
+            "title": "Radius (km)",
+            "type": "string",
+            "description": "Search radius around the location, in km. Requires a location.",
+            "editor": "select",
+            "enum": ["", "5", "10", "20", "50", "100"],
+            "enumTitles": ["Any", "5 km", "10 km", "20 km", "50 km", "100 km"],
+            "default": ""
+        },
+        "age": {
+            "title": "Posted within (days)",
+            "type": "integer",
+            "description": "Only return jobs posted within this many days.",
+            "editor": "number",
+            "minimum": 1,
+            "maximum": 30
+        },
+        "remote": {
+            "title": "Remote only",
+            "type": "boolean",
+            "description": "Only return remote / work-from-home positions.",
+            "default": false
+        },
+        "contractType": {
+            "title": "Contract type",
+            "type": "string",
+            "description": "Filter by employment type.",
+            "editor": "select",
+            "enum": ["", "FULL_TIME", "PART_TIME", "CONTRACT", "TEMPORARY", "PERMANENT"],
+            "enumTitles": ["Any", "Full time", "Part time", "Contract", "Temporary", "Permanent"],
+            "default": ""
+        },
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "Direct jobs.ie search or detail URLs to scrape. Overrides query/location for URL building.",
+            "editor": "requestListSources",
+            "default": []
+        },
+        "includeDetails": {
+            "title": "Fetch detail pages",
+            "type": "boolean",
+            "description": "Fetch each job's detail page for full description, salary, ISO dates and enrichment. Slower but much richer.",
+            "default": true
+        },
+        "descriptionFormat": {
+            "title": "Description format",
+            "type": "string",
+            "description": "Output format for the job description (requires Fetch detail pages).",
+            "editor": "select",
+            "enum": ["html", "text", "markdown"],
+            "enumTitles": ["HTML", "Plain text", "Markdown"],
+            "default": "html"
+        },
+        "mode": {
+            "title": "Mode",
+            "type": "string",
+            "description": "full = return all jobs found. incremental = only return jobs not seen in previous runs (requires stateStoreName).",
+            "editor": "select",
+            "enum": ["full", "incremental"],
+            "enumTitles": ["Full", "Incremental (new/changed only)"],
+            "default": "full"
+        },
+        "stateStoreName": {
+            "title": "State store name",
+            "type": "string",
+            "description": "Named key-value store for incremental state. Use the same name across scheduled runs. Scoped per query+location.",
+            "editor": "textfield",
+            "default": "jobs-ie-state"
+        },
+        "compact": {
+            "title": "Compact output",
+            "type": "boolean",
+            "description": "Emit only the essential fields (jobKey, title, company, location, url, portalUrl, datePosted, workFromHome, unifiedSalary, geo, description). AI/MCP-friendly.",
+            "default": false
+        },
+        "descriptionMaxLength": {
+            "title": "Description max length",
+            "type": "integer",
+            "description": "Truncate the description to this many characters (appends '…'). 0 = no truncation.",
+            "editor": "number",
+            "default": 0
+        },
+        "outputFields": {
+            "title": "Output fields",
+            "type": "array",
+            "description": "Return only this subset of output fields. Empty = all fields.",
+            "editor": "stringList",
+            "default": []
+        },
+        "maxResults": {
+            "title": "Max results",
+            "type": "integer",
+            "description": "Maximum number of listings to return (0 = unlimited).",
+            "editor": "number",
+            "default": 25,
+            "minimum": 0
+        },
+        "maxPages": {
+            "title": "Max search pages",
+            "type": "integer",
+            "description": "Maximum number of search result pages to crawl.",
+            "editor": "number",
+            "default": 10,
+            "minimum": 1
+        },
+        "proxyConfiguration": {
+            "title": "Proxy",
+            "type": "object",
+            "description": "Proxy configuration. Residential proxy is recommended for jobs.ie.",
+            "editor": "proxy",
+            "default": { "useApifyProxy": true, "apifyProxyGroups": ["RESIDENTIAL"] }
+        },
+        "maxConcurrency": {
+            "title": "Max concurrency",
+            "type": "integer",
+            "description": "Maximum number of concurrent requests.",
+            "editor": "number",
+            "default": 5,
+            "minimum": 1
+        },
+        "maxRequestRetries": {
+            "title": "Max request retries",
+            "type": "integer",
+            "description": "Maximum retries per request.",
+            "editor": "number",
+            "default": 3,
+            "minimum": 0
+        }
+    },
+    "required": []
+}

@@ -1,0 +1,32 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Jobs overview",
+            "transformation": {
+                "fields": [
+                    "title",
+                    "company",
+                    "location",
+                    "unifiedSalary",
+                    "employmentType",
+                    "datePosted",
+                    "url"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "title": { "label": "Title" },
+                    "company": { "label": "Company" },
+                    "location": { "label": "Location" },
+                    "unifiedSalary": { "label": "Salary" },
+                    "employmentType": { "label": "Type" },
+                    "datePosted": { "label": "Posted" },
+                    "url": { "label": "URL", "format": "link" }
+                }
+            }
+        }
+    }
+}

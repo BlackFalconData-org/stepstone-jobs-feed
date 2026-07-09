@@ -1,0 +1,15 @@
+{
+    "actorSpecification": 1,
+    "name": "jobs-ie-scraper",
+    "title": "Jobs.ie Scraper — Irish Job Listings, Salary & Skills",
+    "description": "Extract structured job data from jobs.ie (The Stepstone Group). 47 fields, salary, skills, company enrichment, incremental mode, and a compact AI/MCP output.",
+    "version": "0.1",
+    "meta": {
+        "templateId": "ts-crawlee-cheerio"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "./Dockerfile",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "query": "software developer",
+    "location": "Dublin",
+    "maxResults": 25,
+    "includeDetails": true,
+    "descriptionFormat": "html",
+    "mode": "full",
+    "proxyConfiguration": { "useApifyProxy": true, "apifyProxyGroups": ["RESIDENTIAL"] }
+}
